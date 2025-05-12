@@ -1,6 +1,3 @@
-/*
- * Copyright (c) Moshe Ofer 2024.
- */
 
 public class Logic {
 
@@ -66,11 +63,17 @@ public class Logic {
 
     public static void placeQueensRecursive(int column, boolean[][] bord) {
         if (column>= bord[0].length){
-            countSolutions++;
+            solutionsCounter++;
             printBoard(bord);
             return;
         }
-
+        for (int raw=0; raw<bord.length; raw++){
+            if (checkBoard(raw, column, bord)){
+                bord[raw][column]= true;
+                placeQueensRecursive(column+1, bord);
+                bord[raw][column]= false;
+            }
+        }
     }
 
 
