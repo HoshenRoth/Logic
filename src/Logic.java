@@ -9,31 +9,68 @@ public class Logic {
 
     public static void printBoard(boolean[][] bord) {
         System.out.println("########");
-
-        // הדפסת הלוח
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                // אם יש מלכה במשבצת, הדפס 1, אחרת הדפס 0
-                if (board[i][j]) {
+        for (int i=0; i<bord.length; i++){
+            for (int j=0; j<bord[i].length; j++){
+                if (bord[i][j]){
                     System.out.print("1");
                 } else {
                     System.out.print("0");
                 }
             }
-            // ירידת שורה בסוף כל שורה בלוח
             System.out.println();
         }
     }
+
+
     public static boolean checkBoard(int raw, int column, boolean[][] bord) {
-        /*
-         TODO: Fill this function
-         */
-        return false;
+        //בדיקת שורות
+        for (int i=0; i<bord[raw].length; i++){
+            if (i!=column && bord[raw][i]){
+                return false;
+            }
+        }
+        //בדיקת עמודות
+        for (int j=0; j<bord.length; j++){
+            if (j!=raw && bord[j][column]){
+                return false;
+            }
+        }
+
+        //בדיקת אלכסון מימין- למעלה לשמאל- למטה
+        for (int i=column, j=raw; i>=0 && j>=0; i--, j--){
+            if (i!=column && j!=raw && bord[j][i]){
+                return false;
+            }
+        }
+        for (int i=column, j=raw; i<bord[0].length && j<bord.length; i++, j++){
+            if (i!=column && j!= raw && bord[j][i]){
+                return false;
+            }
+        }
+
+        //בדיקת אלכסון משמאל- למעלה לימין- למטה
+        for (int i = column, j = raw; i < bord[0].length && j >= 0; i++, j--){
+            if (i!= column && j!= raw && bord[j][i]){
+                return false;
+            }
+        }
+        for (int i=column, j=raw; i>=0 && j<bord.length; i--, j++){
+            if (i!=column && j!=raw && bord[j][i]){
+                return false;
+            }
+        }
+
+        return true;
     }
+
+
     public static void placeQueensRecursive(int column, boolean[][] bord) {
-        /*
-         TODO: Fill this function
-         */
+        if (column>= bord[0].length){
+            countSolutions++;
+            printBoard(bord);
+            return;
+        }
+
     }
 
 
