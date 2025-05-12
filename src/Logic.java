@@ -8,9 +8,21 @@ public class Logic {
     public static boolean[][] bord;
 
     public static void printBoard(boolean[][] bord) {
-        /*
-         TODO: Fill this function
-         */
+        System.out.println("########");
+
+        // הדפסת הלוח
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                // אם יש מלכה במשבצת, הדפס 1, אחרת הדפס 0
+                if (board[i][j]) {
+                    System.out.print("1");
+                } else {
+                    System.out.print("0");
+                }
+            }
+            // ירידת שורה בסוף כל שורה בלוח
+            System.out.println();
+        }
     }
     public static boolean checkBoard(int raw, int column, boolean[][] bord) {
         /*
